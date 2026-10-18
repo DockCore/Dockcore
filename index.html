@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b0a">
+  <meta name="description" content="DockCore : compare les consoles portables gaming et trouve celle qui te correspond.">
+  <title>DockCore — Le gaming comparé autrement</title>
+  <style>
+    :root {
+      --bg: #080b0a;
+      --panel: #111713;
+      --green: #b7ff38;
+      --text: #f3f7f1;
+      --muted: #9ba69d;
+      --border: #28332a;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 7%;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo { font-size: 25px; font-weight: 900; letter-spacing: -1px; }
+    .logo span { color: var(--green); }
+    nav { display: flex; gap: 24px; }
+    a { color: inherit; text-decoration: none; }
+    nav a { color: var(--muted); font-size: 14px; }
+    nav a:hover { color: var(--green); }
+    .hero {
+      padding: 90px 7% 70px;
+      background: radial-gradient(ellipse at 80% 20%, #243b19 0%, transparent 45%);
+    }
+    .tag {
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 3px;
+    }
+    h1 {
+      font-size: clamp(42px, 8vw, 78px);
+      line-height: 1.02;
+      letter-spacing: -3px;
+      max-width: 800px;
+      margin: 22px 0;
+    }
+    h1 span { color: var(--green); }
+    .intro { color: var(--muted); font-size: 17px; line-height: 1.7; max-width: 560px; }
+    .button {
+      display: inline-block;
+      margin-top: 20px;
+      background: var(--green);
+      color: #10160b;
+      font-weight: 900;
+      padding: 15px 22px;
+      border-radius: 7px;
+    }
+    section { padding: 55px 7%; }
+    .section-title { font-size: 30px; margin: 0 0 10px; }
+    .section-desc { color: var(--muted); margin-bottom: 28px; line-height: 1.6; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color .2s, transform .2s;
+    }
+    .card:hover { border-color: var(--green); transform: translateY(-3px); }
+    .console-art {
+      min-height: 155px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(140deg, #1d2a20, #0c100d);
+      color: var(--green);
+      font-size: 47px;
+      font-weight: 900;
+    }
+    .card-content { padding: 20px; }
+    .card h3 { margin: 0 0 9px; font-size: 20px; }
+    .card p { color: var(--muted); font-size: 14px; line-height: 1.6; min-height: 44px; }
+    .price { color: var(--green); font-size: 19px; font-weight: 800; }
+    .compare {
+      margin-top: 25px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .compare h3 { padding: 0 20px; }
+    .compare table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 16px 20px; border-top: 1px solid var(--border); }
+    th { color: var(--green); font-size: 13px; }
+    td { font-size: 14px; }
+    td:first-child { color: var(--muted); }
+    .note { color: var(--muted); font-size: 12px; padding: 0 20px 20px; }
+    .search {
+      width: 100%;
+      max-width: 420px;
+      padding: 14px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: white;
+      font-size: 15px;
+      margin: 12px 0 25px;
+    }
+    footer {
+      padding: 28px 7%;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 600px) {
+      header { padding: 18px 5%; }
+      nav { gap: 12px; }
+      nav a { font-size: 12px; }
+      .hero { padding: 65px 5% 45px; }
+      section { padding: 38px 5%; }
+      h1 { letter-spacing: -2px; }
+      th, td { padding: 12px 9px; font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="logo" href="#">DOCK<span>CORE</span></a>
+    <nav>
+      <a href="#consoles">Consoles</a>
+      <a href="#comparateur">Comparateur</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="tag">LE GAMING, SANS COMPROMIS</div>
+      <h1>Trouve ta prochaine<br><span>machine de jeu.</span></h1>
+      <p class="intro">Comparatifs, fiches détaillées et conseils pour choisir la console portable qui correspond vraiment à ton style de jeu.</p>
+      <a class="button" href="#comparateur">Comparer les consoles ↗</a>
+    </section>
+
+    <section id="consoles">
+      <div class="tag">LE MATÉRIEL À LA LOUPE</div>
+      <h2 class="section-title">Les consoles gaming</h2>
+      <p class="section-desc">Explore les machines qui méritent ton attention.</p>
+      <input class="search" id="search" type="search" placeholder="Rechercher une console..." aria-label="Rechercher une console">
+      <div class="cards" id="cards">
+        <article class="card" data-name="steam deck valve">
+          <div class="console-art">SD</div>
+          <div class="card-content">
+            <h3>Steam Deck</h3>
+            <p>Une console pensée pour jouer à sa bibliothèque PC en mobilité.</p>
+            <div class="price">À partir de 419 €*</div>
+          </div>
+        </article>
+        <article class="card" data-name="rog ally asus">
+          <div class="console-art">ROG</div>
+          <div class="card-content">
+            <h3>ROG Ally</h3>
+            <p>Une console Windows orientée performances et polyvalence.</p>
+            <div class="price">À partir de 499 €*</div>
+          </div>
+        </article>
+        <article class="card" data-name="lenovo legion go">
+          <div class="console-art">LEGION</div>
+          <div class="card-content">
+            <h3>Legion Go</h3>
+            <p>Un grand écran et des commandes détachables pour jouer autrement.</p>
+            <div class="price">À partir de 599 €*</div>
+          </div>
+        </article>
+      </div>
+      <p class="note">* Prix indicatifs de démonstration, à vérifier avant tout achat. Les caractéristiques seront détaillées dans les prochaines versions.</p>
+    </section>
+
+    <section id="comparateur">
+      <div class="tag">CHOISIS INTELLIGEMMENT</div>
+      <h2 class="section-title">Comparateur gaming</h2>
+      <p class="section-desc">Un premier aperçu des différences entre ces consoles.</p>
+      <div class="compare">
+        <table>
+          <thead>
+            <tr><th>Critère</th><th>Steam Deck</th><th>ROG Ally</th><th>Legion Go</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Système</td><td>SteamOS</td><td>Windows</td><td>Windows</td></tr>
+            <tr><td>Atout</td><td>Ergonomie</td><td>Polyvalence</td><td>Grand écran</td></tr>
+            <tr><td>Usage</td><td>Bibliothèque Steam</td><td>Jeux PC variés</td><td>Jeu immersif</td></tr>
+          </tbody>
+        </table>
+        <p class="note">Comparaison simplifiée : les versions et caractéristiques varient selon les modèles.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="logo" href="#">DOCK<span>CORE</span></a>
+    <span>Le gaming comparé autrement.</span>
+    <span>© 2026 DockCore</span>
+  </footer>
+
+  <script>
+    const search = document.getElementById('search');
+    const cards = document.querySelectorAll('.card');
+    search.addEventListener('input', () => {
+      const query = search.value.toLowerCase().trim();
+      cards.forEach(card => {
+        card.hidden = !card.dataset.name.includes(query);
+      });
+    });
+  </script>
+</body>
+</html>
